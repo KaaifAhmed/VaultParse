@@ -1,0 +1,2 @@
+# VaultParse
+VaultParse: Offline-First Enterprise Document Intelligence. Designed and implemented a completely offline, multi-modal extraction system for highly sensitive enterprise data, such as insurance claims and technical audits. The pipeline ingests messy, mixed-format data (PDFs, text, tables, and images), applies localized OCR, and utilizes a custom RAG architecture powered by quantized local LLMs to securely query and generate structured reports.
