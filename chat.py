@@ -1,3 +1,8 @@
+'''
+We first connect to our database, then retrieve our vectors for RAG.
+
+'''
+
 import os
 import chromadb
 from llama_index.core import VectorStoreIndex, Settings
@@ -26,7 +31,7 @@ Settings.embed_model = embed_model
 
 print("Connecting to chroma vector db...")
 db = chromadb.PersistentClient(path=r'./vaultparse_db')
-collection = db.get_collection('enterprise_docs')
+collection = db.get_collection('enterprise_docs') # Only get, because we want to retrieve only
 
 vector_store = ChromaVectorStore(chroma_collection=collection)
 index = VectorStoreIndex.from_vector_store(vector_store=vector_store) # loading our vectors from the vector store

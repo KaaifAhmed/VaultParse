@@ -63,6 +63,10 @@ def build_vector_db(docs):
     print("\nDatabase built!")
     return index
 
-file_path = 'job_postings.pdf'
-documents = extract_docs(file_path)
+file_path_1 = 'VaultParse_Project_Documentation.pdf'
+documents = extract_docs(file_path_1)
+index = build_vector_db(documents)
+
+file_path_2 = 'VaultParse_Technical_Details.pdf'
+documents = extract_docs(file_path_2)
 index = build_vector_db(documents)
