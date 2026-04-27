@@ -29,14 +29,28 @@ def extract_docs (file_path):
     for i, page in enumerate(file):
         page = file[i]
         text = page.get_text().strip()
-        doc = Document(
-                text=text,
-                metadata={
-                    "source_file": file_path,
-                    "page_number": i + 1
-                }
-            )
-        docs.append(doc)
+        if (len(text)>20):
+            doc = Document(
+                    text=text,
+                    metadata={
+                        "source_file": file_path,
+                        "page_number": i + 1
+                    }
+                )
+            docs.append(doc)
+        else:
+            pix = page.get_pixmap(dpi=300)
+            img = Image.frombytes("RGB", [pix.width, pix.height], pix.samples) # Convert the PyMuPDF image format into a format Tesseract understands
+            
+            text = pytesseract.image_to_string(img)
+            doc = Document(
+                    text=text,
+                    metadata={
+                        "source_file": file_path,
+                        "page_number": i + 1
+                    }
+                )
+            docs.append(doc)
     
     print(f"\nExtracted {len(docs)} pages.")
     return docs
